@@ -7,13 +7,24 @@ blocklist:
   - "538023924079"  # Never nuke the root/production account
 no-blocklist-terms-default: true
 accounts:
-  "825390673649":
+  "144704597187":
     filters:
       IAMRole:
         - "*Organization*"
       S3Bucket:
         - type: contains
           value: cloudtrail
+        - type: contains
+          value: transfer
+        - type: contains
+          value: archive
+      S3BucketObject:
+        - type: contains
+          value: 5-8-2025
+        - type: regex
+          value: (?i)backup
+        - type: regex
+          value: (?i)donotdelete
       CloudFormationStack:
         - type: regex
           value: (?i)crowdstrike

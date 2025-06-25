@@ -5,6 +5,7 @@ regions:
   - us-west-2
 blocklist:
   - "538023924079"  # Never nuke the root/production account
+no-blocklist-terms-default: true
 accounts:
   "REPLACE_WITH_ACCOUNT_ID":
     filters:
