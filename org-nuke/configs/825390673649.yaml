@@ -19,6 +19,8 @@ accounts:
           value: (?i)crowdstrike
         - type: regex
           value: (?i)controltower
+        - type: regex
+          value: (?i)orca
       CloudTrailTrail:
         - type: regex
           value: (?i)controltower
@@ -43,7 +45,11 @@ accounts:
       CloudWatchLogsLogGroup:
         - type: regex
           value: (?i)controltower
+        - type: regex
+          value: (?i)crowdstrike
       LambdaFunction:
         - type: regex
           value: (?i)controltower
+        - type: regex
+          value: (?i)crowdstrike
     # Add more resource filters as needed

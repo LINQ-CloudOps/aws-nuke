@@ -12,24 +12,24 @@ accounts:
       IAMRole:
         - "*Organization*"
       S3Bucket:
-        - type: contains
-          value: cloudtrail
-        - type: contains
-          value: transfer
-        - type: contains
-          value: archive
-      S3BucketObject:
-        - type: contains
-          value: 5-8-2025
         - type: regex
-          value: (?i)backup
+          value: (?i).*
+      S3Object:
         - type: regex
-          value: (?i)donotdelete
+          value: (?i).*
+      S3MultipartUpload:
+        - type: regex
+          value: (?i).*
+      SecretsManagerSecret:
+        - type: regex
+          value: (?i)crowdstrike
       CloudFormationStack:
         - type: regex
           value: (?i)crowdstrike
         - type: regex
           value: (?i)controltower
+        - type: regex
+          value: (?i)orca
       CloudTrailTrail:
         - type: regex
           value: (?i)controltower
@@ -54,7 +54,11 @@ accounts:
       CloudWatchLogsLogGroup:
         - type: regex
           value: (?i)controltower
+        - type: regex
+          value: (?i)crowdstrike
       LambdaFunction:
         - type: regex
           value: (?i)controltower
+        - type: regex
+          value: (?i)crowdstrike
     # Add more resource filters as needed
