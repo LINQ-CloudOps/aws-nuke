@@ -1,0 +1,69 @@
+#!/usr/bin/env bash
+# org-nuke: Modular entry script for org-nuke wrapper around aws-nuke
+# Usage: org-nuke.sh <command> [args...]
+
+
+set -euo pipefail
+
+# Check if aws-nuke is installed, if not, build and use the local version from the fork directory
+if ! command -v aws-nuke >/dev/null 2>&1; then
+    SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+    # Use the correct absolute path for the local aws-nuke directory
+    AWS_NUKE_LOCAL="$(cd "$SCRIPT_DIR/../../aws-nuke" && pwd)"
+    AWS_NUKE_BIN="$AWS_NUKE_LOCAL/aws-nuke"
+    if [ ! -f "$AWS_NUKE_BIN" ]; then
+        echo "aws-nuke not found in PATH and not built locally. Attempting to build from source in $AWS_NUKE_LOCAL..."
+        if [ -f "$AWS_NUKE_LOCAL/main.go" ]; then
+            (cd "$AWS_NUKE_LOCAL" && go build -o aws-nuke main.go)
+        else
+            echo "aws-nuke source not found in $AWS_NUKE_LOCAL. Please clone the forked repo or build manually." >&2
+            exit 10
+        fi
+    fi
+    export PATH="$AWS_NUKE_LOCAL:$PATH"
+    echo "Using locally built aws-nuke from $AWS_NUKE_BIN."
+fi
+
+export AWS_PROFILE="Org_prod"
+# Check if AWS SSO credentials are valid for the current profile
+if ! aws sts get-caller-identity >/dev/null 2>&1; then
+    echo "AWS SSO session invalid or expired for profile $AWS_PROFILE. Running 'aws sso login'..."
+    if ! aws sso login; then
+        echo "Error: Failed to log in to AWS SSO for profile $AWS_PROFILE."
+        exit 1
+    fi
+else
+    echo "AWS SSO session is valid for profile $AWS_PROFILE."
+fi
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+MODULES_DIR="$SCRIPT_DIR/modules"
+
+function usage() {
+    echo "Usage: $0 <command> [args...]"
+    echo "Available commands:"
+    if [ -d "$MODULES_DIR" ]; then
+        for f in "$MODULES_DIR"/*.sh; do
+            [ -e "$f" ] || continue
+            cmd=$(basename "$f" .sh)
+            echo "  $cmd"
+        done
+    fi
+    exit 1
+}
+
+if [ $# -lt 1 ]; then
+    usage
+fi
+
+COMMAND="$1"
+shift
+
+MODULE_SCRIPT="$MODULES_DIR/$COMMAND.sh"
+
+if [ -f "$MODULE_SCRIPT" ]; then
+    source "$MODULE_SCRIPT" "$@"
+else
+    echo "Unknown command: $COMMAND" >&2
+    usage
+fi

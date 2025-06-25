@@ -5,7 +5,6 @@ import (
 
 	"github.com/aws/aws-sdk-go/service/opsworkscm"
 
-	"github.com/ekristen/libnuke/pkg/registry"
 	"github.com/ekristen/libnuke/pkg/resource"
 
 	"github.com/ekristen/aws-nuke/v3/pkg/nuke"
@@ -14,12 +13,12 @@ import (
 const OpsWorksCMBackupResource = "OpsWorksCMBackup"
 
 func init() {
-	registry.Register(&registry.Registration{
-		Name:     OpsWorksCMBackupResource,
-		Scope:    nuke.Account,
-		Resource: &OpsWorksCMBackup{},
-		Lister:   &OpsWorksCMBackupLister{},
-	})
+	// registry.Register(&registry.Registration{
+	// 	Name:     OpsWorksCMBackupResource,
+	// 	Scope:    nuke.Account,
+	// 	Resource: &OpsWorksCMBackup{},
+	// 	Lister:   &OpsWorksCMBackupLister{},
+	// })
 }
 
 type OpsWorksCMBackupLister struct{}

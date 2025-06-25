@@ -6,7 +6,6 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/bedrock"
 
-	"github.com/ekristen/libnuke/pkg/registry"
 	"github.com/ekristen/libnuke/pkg/resource"
 	"github.com/ekristen/libnuke/pkg/types"
 
@@ -16,12 +15,12 @@ import (
 const BedrockProvisionedModelThroughputResource = "BedrockProvisionedModelThroughput"
 
 func init() {
-	registry.Register(&registry.Registration{
-		Name:     BedrockProvisionedModelThroughputResource,
-		Scope:    nuke.Account,
-		Resource: &BedrockProvisionedModelThroughput{},
-		Lister:   &BedrockProvisionedModelThroughputLister{},
-	})
+	// registry.Register(&registry.Registration{
+	//     Name:     BedrockProvisionedModelThroughputResource,
+	//     Scope:    nuke.Account,
+	//     Resource: &BedrockProvisionedModelThroughput{},
+	//     Lister:   &BedrockProvisionedModelThroughputLister{},
+	// })
 }
 
 type BedrockProvisionedModelThroughputLister struct{}

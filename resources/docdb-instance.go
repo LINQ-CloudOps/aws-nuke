@@ -7,7 +7,6 @@ import (
 	"github.com/aws/aws-sdk-go-v2/service/docdb"
 	docdbtypes "github.com/aws/aws-sdk-go-v2/service/docdb/types"
 
-	"github.com/ekristen/libnuke/pkg/registry"
 	"github.com/ekristen/libnuke/pkg/resource"
 	"github.com/ekristen/libnuke/pkg/types"
 
@@ -17,12 +16,12 @@ import (
 const DocDBInstanceResource = "DocDBInstance"
 
 func init() {
-	registry.Register(&registry.Registration{
-		Name:     DocDBInstanceResource,
-		Scope:    nuke.Account,
-		Resource: &DocDBInstance{},
-		Lister:   &DocDBInstanceLister{},
-	})
+	// registry.Register(&registry.Registration{
+	//     Name:     DocDBInstanceResource,
+	//     Scope:    nuke.Account,
+	//     Resource: &DocDBInstance{},
+	//     Lister:   &DocDBInstanceLister{},
+	// })
 }
 
 type DocDBInstanceLister struct{}

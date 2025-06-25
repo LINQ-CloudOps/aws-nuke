@@ -8,3 +8,4 @@ cosign.key
 *.p12
 *.p8
 **/public
+aws-nuke

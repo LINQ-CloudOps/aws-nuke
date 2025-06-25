@@ -7,7 +7,6 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/neptune"
 
-	"github.com/ekristen/libnuke/pkg/registry"
 	"github.com/ekristen/libnuke/pkg/resource"
 	"github.com/ekristen/libnuke/pkg/types"
 
@@ -17,15 +16,15 @@ import (
 const NeptuneSnapshotResource = "NeptuneSnapshot"
 
 func init() {
-	registry.Register(&registry.Registration{
-		Name:     NeptuneSnapshotResource,
-		Scope:    nuke.Account,
-		Resource: &NeptuneSnapshot{},
-		Lister:   &NeptuneSnapshotLister{},
-		DeprecatedAliases: []string{
-			"NetpuneSnapshot",
-		},
-	})
+	// registry.Register(&registry.Registration{
+	// 	Name:     NeptuneSnapshotResource,
+	// 	Scope:    nuke.Account,
+	// 	Resource: &NeptuneSnapshot{},
+	// 	Lister:   &NeptuneSnapshotLister{},
+	// 	DeprecatedAliases: []string{
+	// 		"NetpuneSnapshot",
+	// 	},
+	// })
 }
 
 type NeptuneSnapshotLister struct{}

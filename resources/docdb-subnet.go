@@ -6,7 +6,6 @@ import (
 	"github.com/aws/aws-sdk-go-v2/service/docdb"
 	docdbtypes "github.com/aws/aws-sdk-go-v2/service/docdb/types"
 	"github.com/ekristen/aws-nuke/v3/pkg/nuke"
-	"github.com/ekristen/libnuke/pkg/registry"
 	"github.com/ekristen/libnuke/pkg/resource"
 	"github.com/ekristen/libnuke/pkg/types"
 )
@@ -14,12 +13,12 @@ import (
 const DocDBSubnetGroupResource = "DocDBSubnetGroup"
 
 func init() {
-	registry.Register(&registry.Registration{
-		Name:     DocDBSubnetGroupResource,
-		Scope:    nuke.Account,
-		Resource: &DocDBSubnetGroup{},
-		Lister:   &DocDBSubnetGroupLister{},
-	})
+	// registry.Register(&registry.Registration{
+	// 	Name:     DocDBSubnetGroupResource,
+	// 	Scope:    nuke.Account,
+	// 	Resource: &DocDBSubnetGroup{},
+	// 	Lister:   &DocDBSubnetGroupLister{},
+	// })
 }
 
 type DocDBSubnetGroupLister struct{}

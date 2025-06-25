@@ -5,7 +5,6 @@ import (
 
 	"github.com/aws/aws-sdk-go/service/elastictranscoder"
 
-	"github.com/ekristen/libnuke/pkg/registry"
 	"github.com/ekristen/libnuke/pkg/resource"
 
 	"github.com/ekristen/aws-nuke/v3/pkg/nuke"
@@ -14,12 +13,12 @@ import (
 const ElasticTranscoderPipelineResource = "ElasticTranscoderPipeline"
 
 func init() {
-	registry.Register(&registry.Registration{
-		Name:     ElasticTranscoderPipelineResource,
-		Scope:    nuke.Account,
-		Resource: &ElasticTranscoderPipeline{},
-		Lister:   &ElasticTranscoderPipelineLister{},
-	})
+	// registry.Register(&registry.Registration{
+	//     Name:     ElasticTranscoderPipelineResource,
+	//     Scope:    nuke.Account,
+	//     Resource: &ElasticTranscoderPipeline{},
+	//     Lister:   &ElasticTranscoderPipelineLister{},
+	// })
 }
 
 type ElasticTranscoderPipelineLister struct{}

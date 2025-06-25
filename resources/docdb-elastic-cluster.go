@@ -5,7 +5,6 @@ import (
 
 	"github.com/aws/aws-sdk-go-v2/service/docdbelastic"
 	"github.com/ekristen/aws-nuke/v3/pkg/nuke"
-	"github.com/ekristen/libnuke/pkg/registry"
 	"github.com/ekristen/libnuke/pkg/resource"
 	"github.com/ekristen/libnuke/pkg/types"
 )
@@ -13,12 +12,12 @@ import (
 const DocDBElasticClusterResource = "DocDBElasticCluster"
 
 func init() {
-	registry.Register(&registry.Registration{
-		Name:     DocDBElasticClusterResource,
-		Scope:    nuke.Account,
-		Resource: &DocDBElasticCluster{},
-		Lister:   &DocDBElasticClusterLister{},
-	})
+	// registry.Register(&registry.Registration{
+	//     Name:     DocDBElasticClusterResource,
+	//     Scope:    nuke.Account,
+	//     Resource: &DocDBElasticCluster{},
+	//     Lister:   &DocDBElasticClusterLister{},
+	// })
 }
 
 type DocDBElasticClusterLister struct{}

@@ -6,7 +6,6 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/rekognition"
 
-	"github.com/ekristen/libnuke/pkg/registry"
 	"github.com/ekristen/libnuke/pkg/resource"
 	"github.com/ekristen/libnuke/pkg/types"
 
@@ -16,12 +15,12 @@ import (
 const RekognitionProjectResource = "RekognitionProject"
 
 func init() {
-	registry.Register(&registry.Registration{
-		Name:     RekognitionProjectResource,
-		Scope:    nuke.Account,
-		Resource: &RekognitionProject{},
-		Lister:   &RekognitionProjectLister{},
-	})
+	// registry.Register(&registry.Registration{
+	//     Name:     RekognitionProjectResource,
+	//     Scope:    nuke.Account,
+	//     Resource: &RekognitionProject{},
+	//     Lister:   &RekognitionProjectLister{},
+	// })
 }
 
 type RekognitionProjectLister struct{}

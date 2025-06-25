@@ -6,7 +6,6 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/codestar"
 
-	"github.com/ekristen/libnuke/pkg/registry"
 	"github.com/ekristen/libnuke/pkg/resource"
 
 	"github.com/ekristen/aws-nuke/v3/pkg/nuke"
@@ -15,12 +14,12 @@ import (
 const CodeStarProjectResource = "CodeStarProject"
 
 func init() {
-	registry.Register(&registry.Registration{
-		Name:     CodeStarProjectResource,
-		Scope:    nuke.Account,
-		Resource: &CodeStarProject{},
-		Lister:   &CodeStarProjectLister{},
-	})
+	// registry.Register(&registry.Registration{
+	// 	Name:     CodeStarProjectResource,
+	// 	Scope:    nuke.Account,
+	// 	Resource: &CodeStarProject{},
+	// 	Lister:   &CodeStarProjectLister{},
+	// })
 }
 
 type CodeStarProjectLister struct{}

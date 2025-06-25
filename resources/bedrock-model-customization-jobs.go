@@ -8,7 +8,6 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/bedrock"
 
-	"github.com/ekristen/libnuke/pkg/registry"
 	"github.com/ekristen/libnuke/pkg/resource"
 	"github.com/ekristen/libnuke/pkg/types"
 
@@ -18,12 +17,12 @@ import (
 const BedrockModelCustomizationJobResource = "BedrockModelCustomizationJob"
 
 func init() {
-	registry.Register(&registry.Registration{
-		Name:     BedrockModelCustomizationJobResource,
-		Scope:    nuke.Account,
-		Resource: &BedrockModelCustomizationJob{},
-		Lister:   &BedrockModelCustomizationJobLister{},
-	})
+	// registry.Register(&registry.Registration{
+	//     Name:     BedrockModelCustomizationJobResource,
+	//     Scope:    nuke.Account,
+	//     Resource: &BedrockModelCustomizationJob{},
+	//     Lister:   &BedrockModelCustomizationJobLister{},
+	// })
 }
 
 type BedrockModelCustomizationJobLister struct{}

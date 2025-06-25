@@ -7,7 +7,6 @@ import (
 
 	"github.com/aws/aws-sdk-go/service/elastictranscoder"
 
-	"github.com/ekristen/libnuke/pkg/registry"
 	"github.com/ekristen/libnuke/pkg/resource"
 	"github.com/ekristen/libnuke/pkg/types"
 
@@ -17,12 +16,12 @@ import (
 const ElasticTranscoderPresetResource = "ElasticTranscoderPreset"
 
 func init() {
-	registry.Register(&registry.Registration{
-		Name:     ElasticTranscoderPresetResource,
-		Scope:    nuke.Account,
-		Resource: &ElasticTranscoderPreset{},
-		Lister:   &ElasticTranscoderPresetLister{},
-	})
+	// registry.Register(&registry.Registration{
+	//     Name:     ElasticTranscoderPresetResource,
+	//     Scope:    nuke.Account,
+	//     Resource: &ElasticTranscoderPreset{},
+	//     Lister:   &ElasticTranscoderPresetLister{},
+	// })
 }
 
 type ElasticTranscoderPresetLister struct{}

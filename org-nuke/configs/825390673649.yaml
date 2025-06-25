@@ -1,0 +1,55 @@
+regions:
+  - us-east-1
+  - us-east-2
+  - us-west-1
+  - us-west-2
+blocklist:
+  - "538023924079"  # Never nuke the root/production account
+no-blocklist-terms-default: true
+accounts:
+  "825390673649":
+    filters:
+      IAMRole:
+        - "*Organization*"
+      S3Bucket:
+        - type: contains
+          value: cloudtrail
+      CloudFormationStack:
+        - type: regex
+          value: (?i)crowdstrike
+        - type: regex
+          value: (?i)controltower
+        - type: regex
+          value: (?i)orca
+      CloudTrailTrail:
+        - type: regex
+          value: (?i)controltower
+      ConfigServiceDeliveryChannel:
+        - type: regex
+          value: (?i)controltower
+      ConfigServiceConfigurationRecorder:
+        - type: regex
+          value: (?i)controltower
+      SNSTopic:
+        - type: regex
+          value: (?i)controltower
+      SNSSubscription:
+        - type: regex
+          value: (?i)controltower
+      CloudWatchEventsRule:
+        - type: regex
+          value: (?i)controltower
+      CloudWatchEventsTarget:
+        - type: regex
+          value: (?i)controltower
+      CloudWatchLogsLogGroup:
+        - type: regex
+          value: (?i)controltower
+        - type: regex
+          value: (?i)crowdstrike
+      LambdaFunction:
+        - type: regex
+          value: (?i)controltower
+        - type: regex
+          value: (?i)crowdstrike
+    # Add more resource filters as needed

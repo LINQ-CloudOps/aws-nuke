@@ -6,7 +6,6 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/machinelearning"
 
-	"github.com/ekristen/libnuke/pkg/registry"
 	"github.com/ekristen/libnuke/pkg/resource"
 
 	"github.com/ekristen/aws-nuke/v3/pkg/nuke"
@@ -15,12 +14,12 @@ import (
 const MachineLearningDataSourceResource = "MachineLearningDataSource"
 
 func init() {
-	registry.Register(&registry.Registration{
-		Name:     MachineLearningDataSourceResource,
-		Scope:    nuke.Account,
-		Resource: &MachineLearningDataSource{},
-		Lister:   &MachineLearningDataSourceLister{},
-	})
+	// registry.Register(&registry.Registration{
+	//     Name:     MachineLearningDataSourceResource,
+	//     Scope:    nuke.Account,
+	//     Resource: &MachineLearningDataSource{},
+	//     Lister:   &MachineLearningDataSourceLister{},
+	// })
 }
 
 type MachineLearningDataSourceLister struct{}
