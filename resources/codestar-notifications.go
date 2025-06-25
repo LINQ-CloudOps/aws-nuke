@@ -8,7 +8,6 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/codestarnotifications"
 
-	"github.com/ekristen/libnuke/pkg/registry"
 	"github.com/ekristen/libnuke/pkg/resource"
 	"github.com/ekristen/libnuke/pkg/types"
 
@@ -18,11 +17,11 @@ import (
 const CodeStarNotificationRuleResource = "CodeStarNotificationRule"
 
 func init() {
-	registry.Register(&registry.Registration{
-		Name:   CodeStarNotificationRuleResource,
-		Scope:  nuke.Account,
-		Lister: &CodeStarNotificationRuleLister{},
-	})
+	// registry.Register(&registry.Registration{
+	// 	Name:   CodeStarNotificationRuleResource,
+	// 	Scope:  nuke.Account,
+	// 	Lister: &CodeStarNotificationRuleLister{},
+	// })
 }
 
 type CodeStarNotificationRuleLister struct{}

@@ -9,7 +9,6 @@ import (
 	"github.com/aws/aws-sdk-go-v2/service/docdb"
 	docdbtypes "github.com/aws/aws-sdk-go-v2/service/docdb/types"
 
-	"github.com/ekristen/libnuke/pkg/registry"
 	"github.com/ekristen/libnuke/pkg/resource"
 	"github.com/ekristen/libnuke/pkg/types"
 
@@ -19,12 +18,12 @@ import (
 const DocDBSnapshotResource = "DocDBSnapshot"
 
 func init() {
-	registry.Register(&registry.Registration{
-		Name:     DocDBSnapshotResource,
-		Scope:    nuke.Account,
-		Resource: &DocDBSnapshot{},
-		Lister:   &DocDBSnapshotLister{},
-	})
+	//	registry.Register(&registry.Registration{
+	//	    Name:     DocDBSnapshotResource,
+	//	    Scope:    nuke.Account,
+	//	    Resource: &DocDBSnapshot{},
+	//	    Lister:   &DocDBSnapshotLister{},
+	//	})
 }
 
 type DocDBSnapshotLister struct{}

@@ -7,7 +7,6 @@ import (
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/service/fms"
 
-	"github.com/ekristen/libnuke/pkg/registry"
 	"github.com/ekristen/libnuke/pkg/resource"
 	"github.com/ekristen/libnuke/pkg/types"
 
@@ -17,12 +16,12 @@ import (
 const FMSNotificationChannelResource = "FMSNotificationChannel"
 
 func init() {
-	registry.Register(&registry.Registration{
-		Name:     FMSNotificationChannelResource,
-		Scope:    nuke.Account,
-		Resource: &FMSNotificationChannel{},
-		Lister:   &FMSNotificationChannelLister{},
-	})
+	// registry.Register(&registry.Registration{
+	//     Name:     FMSNotificationChannelResource,
+	//     Scope:    nuke.Account,
+	//     Resource: &FMSNotificationChannel{},
+	//     Lister:   &FMSNotificationChannelLister{},
+	// })
 }
 
 type FMSNotificationChannelLister struct{}

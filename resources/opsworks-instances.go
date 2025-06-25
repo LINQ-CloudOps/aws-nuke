@@ -5,7 +5,6 @@ import (
 
 	"github.com/aws/aws-sdk-go/service/opsworks"
 
-	"github.com/ekristen/libnuke/pkg/registry"
 	"github.com/ekristen/libnuke/pkg/resource"
 
 	"github.com/ekristen/aws-nuke/v3/pkg/nuke"
@@ -14,12 +13,12 @@ import (
 const OpsWorksInstanceResource = "OpsWorksInstance"
 
 func init() {
-	registry.Register(&registry.Registration{
-		Name:     OpsWorksInstanceResource,
-		Scope:    nuke.Account,
-		Resource: &OpsWorksInstance{},
-		Lister:   &OpsWorksInstanceLister{},
-	})
+	// registry.Register(&registry.Registration{
+	//     Name:     OpsWorksInstanceResource,
+	//     Scope:    nuke.Account,
+	//     Resource: &OpsWorksInstance{},
+	//     Lister:   &OpsWorksInstanceLister{},
+	// })
 }
 
 type OpsWorksInstanceLister struct{}

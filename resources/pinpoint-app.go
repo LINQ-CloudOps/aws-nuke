@@ -6,7 +6,6 @@ import (
 
 	"github.com/aws/aws-sdk-go/service/pinpoint"
 
-	"github.com/ekristen/libnuke/pkg/registry"
 	"github.com/ekristen/libnuke/pkg/resource"
 	"github.com/ekristen/libnuke/pkg/types"
 
@@ -16,12 +15,12 @@ import (
 const PinpointAppResource = "PinpointApp"
 
 func init() {
-	registry.Register(&registry.Registration{
-		Name:     PinpointAppResource,
-		Scope:    nuke.Account,
-		Resource: &PinpointApp{},
-		Lister:   &PinpointAppLister{},
-	})
+	// registry.Register(&registry.Registration{
+	//     Name:     PinpointAppResource,
+	//     Scope:    nuke.Account,
+	//     Resource: &PinpointApp{},
+	//     Lister:   &PinpointAppLister{},
+	// })
 }
 
 type PinpointAppLister struct{}

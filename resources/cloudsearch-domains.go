@@ -5,7 +5,6 @@ import (
 
 	"github.com/aws/aws-sdk-go/service/cloudsearch"
 
-	"github.com/ekristen/libnuke/pkg/registry"
 	"github.com/ekristen/libnuke/pkg/resource"
 
 	"github.com/ekristen/aws-nuke/v3/pkg/nuke"
@@ -14,12 +13,12 @@ import (
 const CloudSearchDomainResource = "CloudSearchDomain"
 
 func init() {
-	registry.Register(&registry.Registration{
-		Name:     CloudSearchDomainResource,
-		Scope:    nuke.Account,
-		Resource: &CloudSearchDomain{},
-		Lister:   &CloudSearchDomainLister{},
-	})
+	// registry.Register(&registry.Registration{
+	//     Name:     CloudSearchDomainResource,
+	//     Scope:    nuke.Account,
+	//     Resource: &CloudSearchDomain{},
+	//     Lister:   &CloudSearchDomainLister{},
+	// })
 }
 
 type CloudSearchDomainLister struct{}

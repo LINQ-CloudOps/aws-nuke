@@ -6,7 +6,6 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/fms"
 
-	"github.com/ekristen/libnuke/pkg/registry"
 	"github.com/ekristen/libnuke/pkg/resource"
 	"github.com/ekristen/libnuke/pkg/types"
 
@@ -16,12 +15,12 @@ import (
 const FMSPolicyResource = "FMSPolicy"
 
 func init() {
-	registry.Register(&registry.Registration{
-		Name:     FMSPolicyResource,
-		Scope:    nuke.Account,
-		Resource: &FMSPolicy{},
-		Lister:   &FMSPolicyLister{},
-	})
+	// registry.Register(&registry.Registration{
+	//     Name:     FMSPolicyResource,
+	//     Scope:    nuke.Account,
+	//     Resource: &FMSPolicy{},
+	//     Lister:   &FMSPolicyLister{},
+	// })
 }
 
 type FMSPolicyLister struct{}

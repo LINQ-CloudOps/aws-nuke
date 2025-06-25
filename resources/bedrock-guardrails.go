@@ -6,7 +6,6 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/bedrock"
 
-	"github.com/ekristen/libnuke/pkg/registry"
 	"github.com/ekristen/libnuke/pkg/resource"
 	"github.com/ekristen/libnuke/pkg/types"
 
@@ -16,12 +15,12 @@ import (
 const BedrockGuardrailResource = "BedrockGuardrail"
 
 func init() {
-	registry.Register(&registry.Registration{
-		Name:     BedrockGuardrailResource,
-		Scope:    nuke.Account,
-		Resource: &BedrockGuardrail{},
-		Lister:   &BedrockGuardrailLister{},
-	})
+	// registry.Register(&registry.Registration{
+	//     Name:     BedrockGuardrailResource,
+	//     Scope:    nuke.Account,
+	//     Resource: &BedrockGuardrail{},
+	//     Lister:   &BedrockGuardrailLister{},
+	// })
 }
 
 type BedrockGuardrailLister struct{}

@@ -6,7 +6,6 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/robomaker"
 
-	"github.com/ekristen/libnuke/pkg/registry"
 	"github.com/ekristen/libnuke/pkg/resource"
 	"github.com/ekristen/libnuke/pkg/types"
 
@@ -16,12 +15,12 @@ import (
 const RoboMakerSimulationJobResource = "RoboMakerSimulationJob"
 
 func init() {
-	registry.Register(&registry.Registration{
-		Name:     RoboMakerSimulationJobResource,
-		Scope:    nuke.Account,
-		Resource: &RoboMakerSimulationJob{},
-		Lister:   &RoboMakerSimulationJobLister{},
-	})
+	// registry.Register(&registry.Registration{
+	//     Name:     RoboMakerSimulationJobResource,
+	//     Scope:    nuke.Account,
+	//     Resource: &RoboMakerSimulationJob{},
+	//     Lister:   &RoboMakerSimulationJobLister{},
+	// })
 }
 
 type RoboMakerSimulationJobLister struct{}

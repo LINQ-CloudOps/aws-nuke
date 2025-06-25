@@ -5,7 +5,6 @@ import (
 
 	"github.com/aws/aws-sdk-go/service/cloudwatchrum"
 
-	"github.com/ekristen/libnuke/pkg/registry"
 	"github.com/ekristen/libnuke/pkg/resource"
 	"github.com/ekristen/libnuke/pkg/types"
 
@@ -15,12 +14,12 @@ import (
 const CloudWatchRUMAppResource = "CloudWatchRUMApp"
 
 func init() {
-	registry.Register(&registry.Registration{
-		Name:     CloudWatchRUMAppResource,
-		Scope:    nuke.Account,
-		Resource: &CloudWatchRumApp{},
-		Lister:   &CloudWatchRUMAppLister{},
-	})
+	// registry.Register(&registry.Registration{
+	//     Name:     CloudWatchRUMAppResource,
+	//     Scope:    nuke.Account,
+	//     Resource: &CloudWatchRumApp{},
+	//     Lister:   &CloudWatchRUMAppLister{},
+	// })
 }
 
 type CloudWatchRUMAppLister struct{}
