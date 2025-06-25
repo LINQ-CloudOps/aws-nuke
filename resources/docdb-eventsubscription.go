@@ -7,7 +7,6 @@ import (
 	docdbtypes "github.com/aws/aws-sdk-go-v2/service/docdb/types"
 
 	"github.com/ekristen/aws-nuke/v3/pkg/nuke"
-	"github.com/ekristen/libnuke/pkg/registry"
 	"github.com/ekristen/libnuke/pkg/resource"
 	"github.com/ekristen/libnuke/pkg/types"
 )
@@ -15,12 +14,12 @@ import (
 const DocDBEventSubscriptionResource = "DocDBEventSubscription"
 
 func init() {
-	registry.Register(&registry.Registration{
-		Name:     DocDBEventSubscriptionResource,
-		Scope:    nuke.Account,
-		Resource: &DocDBEventSubscription{},
-		Lister:   &DocDBEventSubscriptionLister{},
-	})
+	// registry.Register(&registry.Registration{
+	// 	Name:     DocDBEventSubscriptionResource,
+	// 	Scope:    nuke.Account,
+	// 	Resource: &DocDBEventSubscription{},
+	// 	Lister:   &DocDBEventSubscriptionLister{},
+	// })
 }
 
 type DocDBEventSubscriptionLister struct{}

@@ -15,8 +15,34 @@ accounts:
           value: cloudtrail
       CloudFormationStack:
         - type: regex
+          value: (?i)crowdstrike
+        - type: regex
           value: (?i)controltower
       CloudTrailTrail:
+        - type: regex
+          value: (?i)controltower
+      ConfigServiceDeliveryChannel:
+        - type: regex
+          value: (?i)controltower
+      ConfigServiceConfigurationRecorder:
+        - type: regex
+          value: (?i)controltower
+      SNSTopic:
+        - type: regex
+          value: (?i)controltower
+      SNSSubscription:
+        - type: regex
+          value: (?i)controltower
+      CloudWatchEventsRule:
+        - type: regex
+          value: (?i)controltower
+      CloudWatchEventsTarget:
+        - type: regex
+          value: (?i)controltower
+      CloudWatchLogsLogGroup:
+        - type: regex
+          value: (?i)controltower
+      LambdaFunction:
         - type: regex
           value: (?i)controltower
     # Add more resource filters as needed

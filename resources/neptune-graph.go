@@ -8,7 +8,6 @@ import (
 	neptunegraphtypes "github.com/aws/aws-sdk-go-v2/service/neptunegraph/types"
 	"github.com/gotidy/ptr"
 
-	"github.com/ekristen/libnuke/pkg/registry"
 	"github.com/ekristen/libnuke/pkg/resource"
 	libsettings "github.com/ekristen/libnuke/pkg/settings"
 	"github.com/ekristen/libnuke/pkg/types"
@@ -19,15 +18,15 @@ import (
 const NeptuneGraphResource = "NeptuneGraph"
 
 func init() {
-	registry.Register(&registry.Registration{
-		Name:     NeptuneGraphResource,
-		Scope:    nuke.Account,
-		Resource: &NeptuneGraph{},
-		Lister:   &NeptuneGraphLister{},
-		Settings: []string{
-			"DisableDeletionProtection",
-		},
-	})
+	// registry.Register(&registry.Registration{
+	// 	Name:     NeptuneGraphResource,
+	// 	Scope:    nuke.Account,
+	// 	Resource: &NeptuneGraph{},
+	// 	Lister:   &NeptuneGraphLister{},
+	// 	Settings: []string{
+	// 		"DisableDeletionProtection",
+	// 	},
+	// })
 }
 
 type NeptuneGraphLister struct{}

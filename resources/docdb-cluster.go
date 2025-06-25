@@ -7,7 +7,6 @@ import (
 	"github.com/aws/aws-sdk-go-v2/service/docdb"
 	docdbtypes "github.com/aws/aws-sdk-go-v2/service/docdb/types"
 
-	"github.com/ekristen/libnuke/pkg/registry"
 	"github.com/ekristen/libnuke/pkg/resource"
 	libsettings "github.com/ekristen/libnuke/pkg/settings"
 	"github.com/ekristen/libnuke/pkg/types"
@@ -20,18 +19,18 @@ const DocDBClusterResource = "DocDBCluster"
 var DocDBEmptyTags = []docdbtypes.Tag{}
 
 func init() {
-	registry.Register(&registry.Registration{
-		Name:     DocDBClusterResource,
-		Scope:    nuke.Account,
-		Resource: &DocDBCluster{},
-		Lister:   &DocDBClusterLister{},
-		DependsOn: []string{
-			DocDBInstanceResource,
-		},
-		Settings: []string{
-			"DisableDeletionProtection",
-		},
-	})
+	// registry.Register(&registry.Registration{
+	// 	Name:     DocDBClusterResource,
+	// 	Scope:    nuke.Account,
+	// 	Resource: &DocDBCluster{},
+	// 	Lister:   &DocDBClusterLister{},
+	// 	DependsOn: []string{
+	// 		DocDBInstanceResource,
+	// 	},
+	// 	Settings: []string{
+	// 		"DisableDeletionProtection",
+	// 	},
+	// })
 }
 
 type DocDBClusterLister struct{}

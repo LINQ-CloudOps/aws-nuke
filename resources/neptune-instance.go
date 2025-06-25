@@ -10,7 +10,6 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/neptune"
 
-	"github.com/ekristen/libnuke/pkg/registry"
 	"github.com/ekristen/libnuke/pkg/resource"
 	libsettings "github.com/ekristen/libnuke/pkg/settings"
 	"github.com/ekristen/libnuke/pkg/types"
@@ -21,16 +20,16 @@ import (
 const NeptuneInstanceResource = "NeptuneInstance"
 
 func init() {
-	registry.Register(&registry.Registration{
-		Name:     NeptuneInstanceResource,
-		Scope:    nuke.Account,
-		Resource: &NeptuneInstance{},
-		Lister:   &NeptuneInstanceLister{},
-		Settings: []string{
-			"DisableClusterDeletionProtection",
-			"DisableDeletionProtection",
-		},
-	})
+	// registry.Register(&registry.Registration{
+	// 	Name:     NeptuneInstanceResource,
+	// 	Scope:    nuke.Account,
+	// 	Resource: &NeptuneInstance{},
+	// 	Lister:   &NeptuneInstanceLister{},
+	// 	Settings: []string{
+	// 		"DisableClusterDeletionProtection",
+	// 		"DisableDeletionProtection",
+	// 	},
+	// })
 }
 
 type NeptuneInstanceLister struct{}
