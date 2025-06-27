@@ -8,6 +8,7 @@ import (
 	"github.com/aws/aws-sdk-go/service/quicksight"
 	"github.com/aws/aws-sdk-go/service/quicksight/quicksightiface"
 
+	"github.com/ekristen/libnuke/pkg/registry"
 	"github.com/ekristen/libnuke/pkg/resource"
 	libsettings "github.com/ekristen/libnuke/pkg/settings"
 	"github.com/ekristen/libnuke/pkg/types"
@@ -19,15 +20,15 @@ const QuickSightSubscriptionResource = "QuickSightSubscription"
 const subscriptionNameWhenNotAvailable = "NOT_AVAILABLE"
 
 func init() {
-	// registry.Register(&registry.Registration{
-	// 	Name:     QuickSightSubscriptionResource,
-	// 	Scope:    nuke.Account,
-	// 	Resource: &QuickSightSubscription{},
-	// 	Lister:   &QuickSightSubscriptionLister{},
-	// 	Settings: []string{
-	// 		"DisableTerminationProtection",
-	// 	},
-	// })
+	registry.Register(&registry.Registration{
+		Name:     QuickSightSubscriptionResource,
+		Scope:    nuke.Account,
+		Resource: &QuickSightSubscription{},
+		Lister:   &QuickSightSubscriptionLister{},
+		Settings: []string{
+			"DisableTerminationProtection",
+		},
+	})
 }
 
 type QuickSightSubscriptionLister struct {

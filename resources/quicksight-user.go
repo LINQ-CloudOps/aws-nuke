@@ -9,6 +9,7 @@ import (
 	"github.com/aws/aws-sdk-go/service/quicksight"
 	"github.com/aws/aws-sdk-go/service/quicksight/quicksightiface"
 
+	"github.com/ekristen/libnuke/pkg/registry"
 	"github.com/ekristen/libnuke/pkg/resource"
 	"github.com/ekristen/libnuke/pkg/types"
 
@@ -18,12 +19,12 @@ import (
 const QuickSightUserResource = "QuickSightUser"
 
 func init() {
-	// registry.Register(&registry.Registration{
-	// 	Name:     QuickSightUserResource,
-	// 	Scope:    nuke.Account,
-	// 	Resource: &QuickSightUserLister{},
-	// 	Lister:   &QuickSightUserLister{},
-	// })
+	registry.Register(&registry.Registration{
+		Name:     QuickSightUserResource,
+		Scope:    nuke.Account,
+		Resource: &QuickSightUserLister{},
+		Lister:   &QuickSightUserLister{},
+	})
 }
 
 type QuickSightUserLister struct {
