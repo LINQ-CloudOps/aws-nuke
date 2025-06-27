@@ -78,7 +78,15 @@ accounts:
       GuardDutyDetector: *wildcard_pattern
       SecretsManagerSecret: *wildcard_pattern
       SSMAssociation: *wildcard_pattern
+      SSMParameter: *wildcard_pattern      
+      SSMActivation: *wildcard_pattern
+      SSMDocument: *wildcard_pattern
+      SSMMaintenanceWindow: *wildcard_pattern
+      SSMMaintenanceWindowTarget: *wildcard_pattern
+      SSMMaintenanceWindowTask: *wildcard_pattern
+      SSMResourceDataSync: *wildcard_pattern
       ACMCertificate: *wildcard_pattern
+      CertificateManagerCertificate: *wildcard_pattern
       KMSAlias: *wildcard_pattern
       KMSKey: *wildcard_pattern
 
@@ -92,6 +100,18 @@ accounts:
       EC2VPNConnection: *wildcard_pattern
       EC2VPC: *wildcard_pattern
       EC2VpcPeeringConnection: *wildcard_pattern
+      CloudFrontDistribution: *wildcard_pattern
+      Route53HealthCheck: *wildcard_pattern
+      Route53HostedZone: *wildcard_pattern
+      Route53QueryLoggingConfig: *wildcard_pattern
+      Route53ResolverEndpoint: *wildcard_pattern
+      Route53ResolverRule: *wildcard_pattern
+      Route53ResolverRuleAssociation: *wildcard_pattern
+      WAFWebACL: *wildcard_pattern
+      WAFv2IPSet: *wildcard_pattern
+      WAFv2RegexPatternSet: *wildcard_pattern
+      WAFv2RuleGroup: *wildcard_pattern
+      WAFv2WebACL: *wildcard_pattern
 
       # Logging resources
       CloudWatchLogsResourcePolicy: *wildcard_pattern
@@ -120,9 +140,16 @@ accounts:
       
       # Lambda and infrastructure resources
       LambdaFunction: *wildcard_pattern
-          
+      LambdaEventSourceMapping: *wildcard_pattern
+      LambdaLayerVersion: *wildcard_pattern
+      LambdaPermission: *wildcard_pattern
+
       # Resources that can be managed manually (regex id isnt playing nice)
       ELBv2: *wildcard_pattern
+      ELB: *standard_project_patterns
+      ELBv2Listener: *wildcard_pattern
+      ELBv2ListenerRule: *wildcard_pattern
+      ELBv2TargetGroup: *wildcard_pattern
       EC2SecurityGroup: *wildcard_pattern
       EC2LaunchTemplate: *wildcard_pattern
       ResourceGroupGroup: *wildcard_pattern
@@ -182,8 +209,6 @@ accounts:
       AutoScalingGroup: *standard_project_patterns
       BackupPlan: *standard_project_patterns
       BackupVault: *standard_project_patterns
-      CertificateManagerCertificate: *standard_project_patterns
-      CloudFrontDistribution: *standard_project_patterns
       CloudFrontOriginAccessIdentity: *standard_project_patterns
       CloudFrontPublicKey: *standard_project_patterns
       CloudFrontStreamingDistribution: *standard_project_patterns
@@ -225,11 +250,6 @@ accounts:
       EKSCluster: *standard_project_patterns
       EKSFargateProfile: *standard_project_patterns
       EKSNodegroup: *standard_project_patterns
-      ELB: *standard_project_patterns
-      ELBv2Listener: *standard_project_patterns
-      ELBv2ListenerRule: *standard_project_patterns
-      ELBv2TargetGroup: *standard_project_patterns
-
       ElasticacheCluster: *standard_project_patterns
       ElasticacheParameterGroup: *standard_project_patterns
       ElasticacheReplicationGroup: *standard_project_patterns
@@ -248,28 +268,12 @@ accounts:
       GlueJob: *standard_project_patterns
       GlueTrigger: *standard_project_patterns
       GlueWorkflow: *standard_project_patterns
-      InspectorAssessmentTemplate: *standard_project_patterns
-      InspectorAssessmentTarget: *standard_project_patterns
-      InspectorResourceGroup: *standard_project_patterns
       KinesisStream: *standard_project_patterns
       KinesisStreamConsumer: *standard_project_patterns
       KinesisStreamShard: *standard_project_patterns
       KinesisVideoStream: *standard_project_patterns
       KinesisVideoStreamConsumer: *standard_project_patterns
       KinesisVideoStreamShard: *standard_project_patterns
-      LambdaEventSourceMapping: *standard_project_patterns
-      LambdaLayerVersion: *standard_project_patterns
-      LambdaPermission: *standard_project_patterns
-      MacieMemberAccountAssociation: *standard_project_patterns
-      MacieS3BucketAssociation: *standard_project_patterns
-
-      OpsWorksStack: *standard_project_patterns
-      OpsWorksUserProfile: *standard_project_patterns
-      OpsWorksVolume: *standard_project_patterns
-      OrganizationsAccount: *standard_project_patterns
-      OrganizationsOrganizationalUnit: *standard_project_patterns
-      OrganizationsPolicy: *standard_project_patterns
-      OrganizationsPolicyAttachment: *standard_project_patterns
       RDSClusterSnapshot: *standard_project_patterns
       RDSDBSnapshot: *standard_project_patterns
       RedshiftCluster: *standard_project_patterns
@@ -279,12 +283,6 @@ accounts:
       RedshiftParameterGroup: *standard_project_patterns
       RedshiftSnapshot: *standard_project_patterns
       RedshiftSubnetGroup: *standard_project_patterns
-      Route53HealthCheck: *standard_project_patterns
-      Route53HostedZone: *standard_project_patterns
-      Route53QueryLoggingConfig: *standard_project_patterns
-      Route53ResolverEndpoint: *standard_project_patterns
-      Route53ResolverRule: *standard_project_patterns
-      Route53ResolverRuleAssociation: *standard_project_patterns
       S3AccessPoint: *standard_project_patterns
       S3BucketPolicy: *standard_project_patterns
       S3ObjectLambdaAccessPoint: *standard_project_patterns
@@ -303,20 +301,6 @@ accounts:
       SNSTopicPolicy: *standard_project_patterns
       SQSQueue: *standard_project_patterns
       SQSQueuePolicy: *standard_project_patterns
-      SSMActivation: *standard_project_patterns
-      SSMDocument: *standard_project_patterns
-      SSMMaintenanceWindow: *standard_project_patterns
-      SSMMaintenanceWindowTarget: *standard_project_patterns
-      SSMMaintenanceWindowTask: *standard_project_patterns
-      SSMParameter: *standard_project_patterns
-      SSMResourceDataSync: *standard_project_patterns
-      SageMakerEndpoint: *standard_project_patterns
-      SageMakerEndpointConfig: *standard_project_patterns
-      SageMakerModel: *standard_project_patterns
-      SageMakerNotebookInstance: *standard_project_patterns
-      SageMakerNotebookInstanceLifecycleConfig: *standard_project_patterns
-      SageMakerTrainingJob: *standard_project_patterns
-      SageMakerTransformJob: *standard_project_patterns
       ServiceCatalogProduct: *standard_project_patterns
       ServiceCatalogProvisionedProduct: *standard_project_patterns
       ServiceCatalogProvisioningArtifact: *standard_project_patterns
@@ -325,10 +309,3 @@ accounts:
       StepFunctionStateMachine: *standard_project_patterns
       TransferServer: *standard_project_patterns
       TransferUser: *standard_project_patterns
-      WAFWebACL: *standard_project_patterns
-      WAFv2IPSet: *standard_project_patterns
-      WAFv2RegexPatternSet: *standard_project_patterns
-      WAFv2RuleGroup: *standard_project_patterns
-      WAFv2WebACL: *standard_project_patterns
-      WorkSpacesDirectory: *standard_project_patterns
-      WorkSpacesWorkspace: *standard_project_patterns
