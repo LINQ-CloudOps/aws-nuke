@@ -94,4 +94,4 @@ fi
 
 # Run aws-nuke with assumed role credentials (always no prompt)
 export AWS_NUKE_PARALLEL_QUERIES=192
-aws-nuke run --no-prompt --no-alias-check --no-dry-run --config "$CONFIG_FILE" "$@"
+aws-nuke run --no-prompt --no-alias-check --config "$CONFIG_FILE" "$@"
