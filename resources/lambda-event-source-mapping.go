@@ -5,7 +5,6 @@ import (
 
 	"github.com/aws/aws-sdk-go/service/lambda"
 
-	"github.com/ekristen/libnuke/pkg/registry"
 	"github.com/ekristen/libnuke/pkg/resource"
 	"github.com/ekristen/libnuke/pkg/types"
 
@@ -15,12 +14,12 @@ import (
 const LambdaEventSourceMappingResource = "LambdaEventSourceMapping"
 
 func init() {
-	registry.Register(&registry.Registration{
-		Name:     LambdaEventSourceMappingResource,
-		Scope:    nuke.Account,
-		Resource: &LambdaEventSourceMapping{},
-		Lister:   &LambdaEventSourceMappingLister{},
-	})
+	// registry.Register(&registry.Registration{
+	// 	Name:     LambdaEventSourceMappingResource,
+	// 	Scope:    nuke.Account,
+	// 	Resource: &LambdaEventSourceMapping{},
+	// 	Lister:   &LambdaEventSourceMappingLister{},
+	// })
 }
 
 type LambdaEventSourceMappingLister struct{}
