@@ -2,7 +2,6 @@
 # org-nuke: Modular entry script for org-nuke wrapper around aws-nuke
 # Usage: org-nuke.sh <command> [args...]
 
-
 set -euo pipefail
 
 # Check if aws-nuke is installed, if not, build and use the local version from the fork directory

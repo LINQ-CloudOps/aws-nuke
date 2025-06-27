@@ -10,7 +10,6 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/servicecatalog"
 
-	"github.com/ekristen/libnuke/pkg/registry"
 	"github.com/ekristen/libnuke/pkg/resource"
 	"github.com/ekristen/libnuke/pkg/types"
 
@@ -21,12 +20,12 @@ import (
 const ServiceCatalogConstraintPortfolioAttachmentResource = "ServiceCatalogConstraintPortfolioAttachment"
 
 func init() {
-	registry.Register(&registry.Registration{
-		Name:     ServiceCatalogConstraintPortfolioAttachmentResource,
-		Scope:    nuke.Account,
-		Resource: &ServiceCatalogConstraintPortfolioAttachment{},
-		Lister:   &ServiceCatalogConstraintPortfolioAttachmentLister{},
-	})
+	// registry.Register(&registry.Registration{
+	// 	Name:     ServiceCatalogConstraintPortfolioAttachmentResource,
+	// 	Scope:    nuke.Account,
+	// 	Resource: &ServiceCatalogConstraintPortfolioAttachment{},
+	// 	Lister:   &ServiceCatalogConstraintPortfolioAttachmentLister{},
+	// })
 }
 
 type ServiceCatalogConstraintPortfolioAttachmentLister struct{}
