@@ -1,0 +1,311 @@
+# Titan Dev (154477591355)
+# ==============================================
+# NOTES FOR MAINTAINING THIS CONFIG:
+# ==============================================
+# 1. This file uses YAML anchors (&) and aliases (*) to reduce repetition
+# 2. To add a new resource type with standard patterns, simply add:
+#    NewResourceType: *standard_project_patterns
+# 3. For resources with custom patterns, define them directly or 
+#    create a new anchor in the definitions section
+# 4. Always run aws-nuke in dry-run mode first (--no-dry-run=false)
+# ==============================================
+regions:
+  - us-east-1
+  - us-east-2
+  - us-west-1
+  - us-west-2
+blocklist:
+  - "538023924079"  # Never nuke the root/production account
+no-blocklist-terms-default: true
+
+# Define common filter patterns as YAML anchors
+definitions:
+  filter_patterns:
+    # Standard project naming pattern
+    standard_project_patterns: &standard_project_patterns
+      - type: regex
+        value: (?i)^(titan-dev|dev-titan|sandbox-titan|staging-titan|k8s-|argoCD)-.*
+      - type: regex
+        value: (?i)satellite
+      - type: regex
+        value: (?i)integration
+      - type: regex
+        value: (?i)nutrition
+    
+    # Control Tower specific patterns
+    controltower_pattern: &controltower_pattern
+      - type: regex
+        value: (?i)controltower
+    
+    # CrowdStrike specific patterns
+    crowdstrike_pattern: &crowdstrike_pattern
+      - type: regex
+        value: (?i)crowdstrike
+    
+    # Wildcards pattern for S3 resources
+    wildcard_pattern: &wildcard_pattern
+      - type: regex
+        value: (?i).*
+    
+    # Image builder specific patterns
+    image_builder_patterns: &image_builder_patterns
+      - type: regex
+        value: (?i).*golden-windows.*
+      - type: regex
+        value: (?i).*silver-iis.*
+      - type: regex
+        value: (?i).*image-builder.*
+      - type: regex
+        value: (?i).*ec2imagebuilder.*
+
+accounts:
+  "154477591355":
+    filters:
+      # S3 resources - protect all
+      S3Bucket: *wildcard_pattern
+      S3Object: *wildcard_pattern
+      S3MultipartUpload: *wildcard_pattern
+      
+      # Secrets and security resources
+      IAMRole: *wildcard_pattern
+      IAMUser: *wildcard_pattern
+      IAMGroup: *wildcard_pattern
+      IAMInstanceProfile: *wildcard_pattern
+      IAMPolicy: *wildcard_pattern
+      IAMRolePolicyAttachment: *wildcard_pattern
+      IAMUserPolicyAttachment: *wildcard_pattern
+      CloudWatchAnomalyDetector: *wildcard_pattern
+      GuardDutyDetector: *wildcard_pattern
+      SecretsManagerSecret: *wildcard_pattern
+      SSMAssociation: *wildcard_pattern
+      SSMParameter: *wildcard_pattern      
+      SSMActivation: *wildcard_pattern
+      SSMDocument: *wildcard_pattern
+      SSMMaintenanceWindow: *wildcard_pattern
+      SSMMaintenanceWindowTarget: *wildcard_pattern
+      SSMMaintenanceWindowTask: *wildcard_pattern
+      SSMResourceDataSync: *wildcard_pattern
+      ACMCertificate: *wildcard_pattern
+      CertificateManagerCertificate: *wildcard_pattern
+      KMSAlias: *wildcard_pattern
+      KMSKey: *wildcard_pattern
+
+      # Networking resources
+      EC2VPCEndpoint: *wildcard_pattern
+      EC2VPNGatewayAttachment: *wildcard_pattern
+      EC2NATGateway: *wildcard_pattern
+      EC2NetworkInterface: *wildcard_pattern
+      APIGatewayDomainName: *wildcard_pattern
+      EC2InternetGateway: *wildcard_pattern
+      EC2VPNConnection: *wildcard_pattern
+      EC2VPC: *wildcard_pattern
+      EC2VpcPeeringConnection: *wildcard_pattern
+      CloudFrontDistribution: *wildcard_pattern
+      Route53HealthCheck: *wildcard_pattern
+      Route53HostedZone: *wildcard_pattern
+      Route53QueryLoggingConfig: *wildcard_pattern
+      Route53ResolverEndpoint: *wildcard_pattern
+      Route53ResolverRule: *wildcard_pattern
+      Route53ResolverRuleAssociation: *wildcard_pattern
+      WAFWebACL: *wildcard_pattern
+      WAFv2IPSet: *wildcard_pattern
+      WAFv2RegexPatternSet: *wildcard_pattern
+      WAFv2RuleGroup: *wildcard_pattern
+      WAFv2WebACL: *wildcard_pattern
+
+      # Logging resources
+      CloudWatchLogsResourcePolicy: *wildcard_pattern
+      CloudWatchEventsBuses: *wildcard_pattern
+      CloudWatchLogsLogGroup: *wildcard_pattern
+
+      # Database resources
+      RDSDBInstance: *wildcard_pattern
+      RDSDBCluster: *wildcard_pattern
+      RDSDBParameterGroup: *wildcard_pattern
+      RDSDBProxy: *wildcard_pattern
+      RDSDBProxyTargetGroup: *wildcard_pattern
+      RDSDBSecurityGroup: *wildcard_pattern
+      RDSClusterEndpoint: *wildcard_pattern
+      RDSClusterParameterGroup: *wildcard_pattern
+      RDSEventSubscription: *wildcard_pattern
+      RDSOptionGroup: *wildcard_pattern
+      RDSDBSubnetGroup: *wildcard_pattern
+      DynamoDBTable: *wildcard_pattern
+      DynamoDBTableItem: *wildcard_pattern
+      ElastiCacheCluster: *wildcard_pattern
+      ElasticacheSubnetGroup: *wildcard_pattern
+
+      # CloudFormation resources
+      CloudFormationStack: *wildcard_pattern
+      
+      # Lambda and infrastructure resources
+      LambdaFunction: *wildcard_pattern
+      LambdaEventSourceMapping: *wildcard_pattern
+      LambdaLayerVersion: *wildcard_pattern
+      LambdaPermission: *wildcard_pattern
+
+      # Resources that can be managed manually (regex id isnt playing nice)
+      ELBv2: *wildcard_pattern
+      ELB: *standard_project_patterns
+      ELBv2Listener: *wildcard_pattern
+      ELBv2ListenerRule: *wildcard_pattern
+      ELBv2TargetGroup: *wildcard_pattern
+      EC2SecurityGroup: *wildcard_pattern
+      EC2LaunchTemplate: *wildcard_pattern
+      ResourceGroupGroup: *wildcard_pattern
+      EC2Instance: *wildcard_pattern
+      EC2Volume: *wildcard_pattern
+      ECRRepository: *wildcard_pattern
+      ECSCluster: *wildcard_pattern
+      ECSService: *wildcard_pattern
+      ECSTaskDefinition: *wildcard_pattern
+      APIGatewayV2API: *wildcard_pattern
+      EC2Address: *wildcard_pattern
+
+      # Control Tower resources
+      CloudTrailTrail: *controltower_pattern
+      ConfigServiceDeliveryChannel: *controltower_pattern
+      ConfigServiceConfigurationRecorder: *controltower_pattern
+      SNSTopic: *controltower_pattern
+      SNSSubscription: *controltower_pattern
+      CloudWatchEventsRule: *controltower_pattern
+      CloudWatchEventsTarget: *controltower_pattern
+
+      # EC2 Snapshots with additional image builder patterns
+      EC2Snapshot:
+        - type: regex
+          value: (?i)^(titan-dev|dev-titan|sandbox-titan|staging-titan)-.*
+        - type: regex
+          value: (?i)satellite
+        - type: regex
+          value: (?i)integration
+        - type: regex
+          value: (?i)nutrition
+        - type: regex
+          value: (?i).*golden-windows.*
+        - type: regex
+          value: (?i).*silver-iis.*
+        - type: regex
+          value: (?i).*image-builder.*
+        - type: regex
+          value: (?i).*ec2imagebuilder.*
+      
+      # The following resource types all use standard project patterns
+      APIGatewayRestAPI: *standard_project_patterns
+      APIGatewayStage: *standard_project_patterns
+      APIGatewayUsagePlan: *standard_project_patterns
+      APIGatewayUsagePlanKey: *standard_project_patterns
+      AccessAnalyzerAnalyzer: *standard_project_patterns
+      AppConfigApplication: *standard_project_patterns
+      AppConfigConfigurationProfile: *standard_project_patterns
+      AppConfigDeploymentStrategy: *standard_project_patterns
+      AppConfigEnvironment: *standard_project_patterns
+      AppConfigHostedConfigurationVersion: *standard_project_patterns
+      ApplicationAutoScalingScalableTarget: *standard_project_patterns
+      AppSyncGraphQLApi: *standard_project_patterns
+      AppSyncResolver: *standard_project_patterns
+      AppSyncType: *standard_project_patterns
+      AthenaWorkGroup: *standard_project_patterns
+      AutoScalingGroup: *standard_project_patterns
+      BackupPlan: *standard_project_patterns
+      BackupVault: *standard_project_patterns
+      CloudFrontOriginAccessIdentity: *standard_project_patterns
+      CloudFrontPublicKey: *standard_project_patterns
+      CloudFrontStreamingDistribution: *standard_project_patterns
+      CloudWatchAlarm: *standard_project_patterns
+      CloudWatchDashboard: *standard_project_patterns
+      CloudWatchLogGroup: *standard_project_patterns
+      CloudWatchMetricAlarm: *standard_project_patterns
+      CodeBuildProject: *standard_project_patterns
+      CodePipeline: *standard_project_patterns
+      CognitoIdentityPool: *standard_project_patterns
+      CognitoUserPool: *standard_project_patterns
+      CognitoUserPoolClient: *standard_project_patterns
+      CognitoUserPoolDomain: *standard_project_patterns
+      ConfigRule: *standard_project_patterns
+      EC2Ami: *standard_project_patterns
+      EC2CapacityReservation: *standard_project_patterns
+      EC2CarrierGateway: *standard_project_patterns
+      EC2ClientVpnEndpoint: *standard_project_patterns
+      EC2ClientVpnRoute: *standard_project_patterns
+      EC2ClientVpnTargetNetworkAssociation: *standard_project_patterns
+      EC2DHCPOption: *standard_project_patterns
+      EC2EgressOnlyInternetGateway: *standard_project_patterns
+      EC2Fleet: *standard_project_patterns
+      EC2KeyPair: *standard_project_patterns
+      EC2LaunchTemplateVersion: *standard_project_patterns
+      EC2LocalGatewayRouteTable: *standard_project_patterns
+      EC2LocalGatewayRouteTableVpcAssociation: *standard_project_patterns
+      EC2ManagedPrefixList: *standard_project_patterns
+      EC2NetworkAcl: *standard_project_patterns
+      EC2PlacementGroup: *standard_project_patterns
+      EC2Route: *standard_project_patterns
+      EC2RouteTable: *standard_project_patterns
+      EC2Subnet: *standard_project_patterns
+      EC2TransitGateway: *standard_project_patterns
+      EC2TransitGatewayAttachment: *standard_project_patterns
+      EC2TransitGatewayRouteTable: *standard_project_patterns
+      EFSFileSystem: *standard_project_patterns
+      EFSMountTarget: *standard_project_patterns
+      EKSCluster: *standard_project_patterns
+      EKSFargateProfile: *standard_project_patterns
+      EKSNodegroup: *standard_project_patterns
+      ElasticacheCluster: *standard_project_patterns
+      ElasticacheParameterGroup: *standard_project_patterns
+      ElasticacheReplicationGroup: *standard_project_patterns
+      ElasticacheSnapshot: *standard_project_patterns
+      ElasticsearchDomain: *standard_project_patterns
+      EventBridgeRule: *standard_project_patterns
+      EventBridgeTarget: *standard_project_patterns
+      FSxFileSystem: *standard_project_patterns
+      FSxBackup: *standard_project_patterns
+      FSxDataRepositoryAssociation: *standard_project_patterns
+      FSxSnapshot: *standard_project_patterns
+      GlueCatalogDatabase: *standard_project_patterns
+      GlueCatalogTable: *standard_project_patterns
+      GlueConnection: *standard_project_patterns
+      GlueCrawler: *standard_project_patterns
+      GlueJob: *standard_project_patterns
+      GlueTrigger: *standard_project_patterns
+      GlueWorkflow: *standard_project_patterns
+      KinesisStream: *standard_project_patterns
+      KinesisStreamConsumer: *standard_project_patterns
+      KinesisStreamShard: *standard_project_patterns
+      KinesisVideoStream: *standard_project_patterns
+      KinesisVideoStreamConsumer: *standard_project_patterns
+      KinesisVideoStreamShard: *standard_project_patterns
+      RDSClusterSnapshot: *standard_project_patterns
+      RDSDBSnapshot: *standard_project_patterns
+      RedshiftCluster: *standard_project_patterns
+      RedshiftClusterParameterGroup: *standard_project_patterns
+      RedshiftClusterSnapshot: *standard_project_patterns
+      RedshiftEventSubscription: *standard_project_patterns
+      RedshiftParameterGroup: *standard_project_patterns
+      RedshiftSnapshot: *standard_project_patterns
+      RedshiftSubnetGroup: *standard_project_patterns
+      S3AccessPoint: *standard_project_patterns
+      S3BucketPolicy: *standard_project_patterns
+      S3ObjectLambdaAccessPoint: *standard_project_patterns
+      S3ObjectLambdaAccessPointPolicy: *standard_project_patterns
+      S3StorageLensConfiguration: *standard_project_patterns
+      SESConfigurationSet: *standard_project_patterns
+      SESDomainIdentity: *standard_project_patterns
+      SESDomainIdentityVerification: *standard_project_patterns
+      SESDomainMailFrom: *standard_project_patterns
+      SESReceiptFilter: *standard_project_patterns
+      SESReceiptRule: *standard_project_patterns
+      SESReceiptRuleSet: *standard_project_patterns
+      SESTemplate: *standard_project_patterns
+      SNSPlatformApplication: *standard_project_patterns
+      SNSPlatformEndpoint: *standard_project_patterns
+      SNSTopicPolicy: *standard_project_patterns
+      SQSQueue: *standard_project_patterns
+      SQSQueuePolicy: *standard_project_patterns
+      ServiceCatalogProduct: *standard_project_patterns
+      ServiceCatalogProvisionedProduct: *standard_project_patterns
+      ServiceCatalogProvisioningArtifact: *standard_project_patterns
+      ShieldProtection: *standard_project_patterns
+      StepFunctionActivity: *standard_project_patterns
+      StepFunctionStateMachine: *standard_project_patterns
+      TransferServer: *standard_project_patterns
+      TransferUser: *standard_project_patterns

@@ -1,4 +1,4 @@
-# CloudOps Dev (825390673649)
+# Data Lake Dev (430326352999)
 regions:
   - us-east-1
   - us-east-2
@@ -8,13 +8,25 @@ blocklist:
   - "538023924079"  # Never nuke the root/production account
 no-blocklist-terms-default: true
 accounts:
-  "825390673649":
+  "430326352999":
     filters:
       IAMRole:
         - "*Organization*"
       S3Bucket:
-        - type: contains
-          value: cloudtrail
+        - type: regex
+          value: (?i).*
+      S3Object:
+        - type: regex
+          value: (?i).*
+      S3MultipartUpload:
+        - type: regex
+          value: (?i).*
+      SecretsManagerSecret:
+        - type: regex
+          value: (?i).*
+      SSMParameter:
+        - type: regex
+          value: (?i).*
       CloudFormationStack:
         - type: regex
           value: (?i)crowdstrike

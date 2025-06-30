@@ -8,7 +8,6 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/servicecatalog"
 
-	"github.com/ekristen/libnuke/pkg/registry"
 	"github.com/ekristen/libnuke/pkg/resource"
 	"github.com/ekristen/libnuke/pkg/types"
 
@@ -19,12 +18,12 @@ import (
 const ServiceCatalogTagOptionResource = "ServiceCatalogTagOption"
 
 func init() {
-	registry.Register(&registry.Registration{
-		Name:     ServiceCatalogTagOptionResource,
-		Scope:    nuke.Account,
-		Resource: &ServiceCatalogTagOption{},
-		Lister:   &ServiceCatalogTagOptionLister{},
-	})
+	// registry.Register(&registry.Registration{
+	// 	Name:     ServiceCatalogTagOptionResource,
+	// 	Scope:    nuke.Account,
+	// 	Resource: &ServiceCatalogTagOption{},
+	// 	Lister:   &ServiceCatalogTagOptionLister{},
+	// })
 }
 
 type ServiceCatalogTagOptionLister struct{}
