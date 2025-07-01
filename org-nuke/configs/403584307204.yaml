@@ -1,4 +1,4 @@
-# Titan Dev (154477591355)
+# Titan Prod (403584307204)
 # ==============================================
 # NOTES FOR MAINTAINING THIS CONFIG:
 # ==============================================
@@ -59,7 +59,7 @@ definitions:
         value: (?i).*ec2imagebuilder.*
 
 accounts:
-  "154477591355":
+  "403584307204":
     filters:
       # S3 resources - protect all
       S3Bucket: *wildcard_pattern
@@ -117,6 +117,7 @@ accounts:
       CloudWatchLogsResourcePolicy: *wildcard_pattern
       CloudWatchEventsBuses: *wildcard_pattern
       CloudWatchLogsLogGroup: *wildcard_pattern
+      CloudWatchDashboard: *wildcard_pattern
 
       # Database resources
       # RDSDBInstance: *wildcard_pattern
@@ -168,8 +169,9 @@ accounts:
       ConfigServiceConfigurationRecorder: *controltower_pattern
       SNSTopic: *controltower_pattern
       SNSSubscription: *controltower_pattern
-      CloudWatchEventsRule: *controltower_pattern
-      CloudWatchEventsTarget: *controltower_pattern
+      CloudWatchEventsRule: *wildcard_pattern
+      CloudWatchEventsTarget: *wildcard_pattern
+      Inspector2: *wildcard_pattern
 
       # EC2 Snapshots with additional image builder patterns
       # EC2Snapshot:
@@ -213,7 +215,6 @@ accounts:
       # CloudFrontPublicKey: *standard_project_patterns
       # CloudFrontStreamingDistribution: *standard_project_patterns
       # CloudWatchAlarm: *standard_project_patterns
-      CloudWatchDashboard: *wildcard_pattern
       # CloudWatchLogGroup: *standard_project_patterns
       # CloudWatchMetricAlarm: *standard_project_patterns
       # CodeBuildProject: *standard_project_patterns
