@@ -1,3 +1,13 @@
+# ==============================================
+# NOTES FOR MAINTAINING THIS CONFIG:
+# ==============================================
+# 1. This file uses YAML anchors (&) and aliases (*) to reduce repetition
+# 2. To add a new resource type with standard patterns, simply add:
+#    NewResourceType: *standard_project_patterns
+# 3. For resources with custom patterns, define them directly or 
+#    create a new anchor in the definitions section
+# 4. Always run aws-nuke in dry-run mode first (--no-dry-run=false)
+# ==============================================
 regions:
   - us-east-1
   - us-east-2
