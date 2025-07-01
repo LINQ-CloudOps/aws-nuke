@@ -54,6 +54,20 @@ Each configuration includes:
 - Security controls
 - Resource exclusions
 
+AWS SSO CLI Configuration
+
+```text
+[sso-session LINQ_sso]
+sso_start_url = https://linq.awsapps.com/start/#
+sso_region = us-east-1
+sso_registration_scopes = sso:account:access
+[profile Org_prod]
+sso_session = LINQ_sso
+sso_account_id = 538023924079
+sso_role_name = AWSAdministratorAccess
+region = us-east-1
+```
+
 ## Usage
 
 ```bash
