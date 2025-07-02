@@ -1,3 +1,4 @@
+# Prod Immutable Recovery (047719630085)
 # ==============================================
 # NOTES FOR MAINTAINING THIS CONFIG:
 # ==============================================
@@ -28,7 +29,7 @@ definitions:
       - type: regex
         value: (?i).*
 accounts:
-  "REPLACE_WITH_ACCOUNT_ID":
+  "047719630085":
     filters:
       # S3 resources - protect all
       S3Bucket: *wildcard_pattern

@@ -1,4 +1,4 @@
-# Titan Dev (154477591355)
+# Titan Prod (403584307204)
 # ==============================================
 # NOTES FOR MAINTAINING THIS CONFIG:
 # ==============================================
@@ -59,7 +59,7 @@ definitions:
         value: (?i).*ec2imagebuilder.*
 
 accounts:
-  "154477591355":
+  "403584307204":
     filters:
       # S3 resources - protect all
       S3Bucket: *wildcard_pattern

@@ -1,3 +1,4 @@
+# AFT-Management (434843203766)
 # ==============================================
 # NOTES FOR MAINTAINING THIS CONFIG:
 # ==============================================
@@ -9,8 +10,6 @@
 # 4. Always run aws-nuke in dry-run mode first (--no-dry-run=false)
 # ==============================================
 regions:
-  - us-east-1
-  - us-east-2
   - us-west-1
   - us-west-2
 blocklist:
@@ -28,7 +27,7 @@ definitions:
       - type: regex
         value: (?i).*
 accounts:
-  "REPLACE_WITH_ACCOUNT_ID":
+  "434843203766":
     filters:
       # S3 resources - protect all
       S3Bucket: *wildcard_pattern
@@ -50,8 +49,8 @@ accounts:
       ConfigServiceConfigurationRecorder: *controltower_pattern
       SNSTopic: *controltower_pattern
       SNSSubscription: *controltower_pattern
-      CloudWatchEventsRule: *controltower_pattern
-      CloudWatchEventsTarget: *controltower_pattern
+      CloudWatchEventsRule: *wildcard_pattern
+      CloudWatchEventsTarget: *wildcard_pattern
       LambdaFunction: *controltower_pattern
       CloudWatchLogsLogGroup: *controltower_pattern
       # Add more resource filters as needed

@@ -1,4 +1,4 @@
-# Titan Dev (154477591355)
+# Titan Staging (325635965894)
 # ==============================================
 # NOTES FOR MAINTAINING THIS CONFIG:
 # ==============================================
@@ -59,7 +59,7 @@ definitions:
         value: (?i).*ec2imagebuilder.*
 
 accounts:
-  "154477591355":
+  "325635965894":
     filters:
       # S3 resources - protect all
       S3Bucket: *wildcard_pattern
