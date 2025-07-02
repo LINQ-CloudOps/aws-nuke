@@ -1,0 +1,56 @@
+# AFT-Management (434843203766)
+# ==============================================
+# NOTES FOR MAINTAINING THIS CONFIG:
+# ==============================================
+# 1. This file uses YAML anchors (&) and aliases (*) to reduce repetition
+# 2. To add a new resource type with standard patterns, simply add:
+#    NewResourceType: *standard_project_patterns
+# 3. For resources with custom patterns, define them directly or 
+#    create a new anchor in the definitions section
+# 4. Always run aws-nuke in dry-run mode first (--no-dry-run=false)
+# ==============================================
+regions:
+  - us-west-1
+  - us-west-2
+blocklist:
+  - "538023924079"  # Never nuke the root/production account
+no-blocklist-terms-default: true
+# Define common filter patterns as YAML anchors
+definitions:
+  filter_patterns:    
+    # Control Tower specific patterns
+    controltower_pattern: &controltower_pattern
+      - type: regex
+        value: (?i)controltower
+    # Wildcards pattern for critical resources
+    wildcard_pattern: &wildcard_pattern
+      - type: regex
+        value: (?i).*
+accounts:
+  "434843203766":
+    filters:
+      # S3 resources - protect all
+      S3Bucket: *wildcard_pattern
+      S3Object: *wildcard_pattern
+      S3MultipartUpload: *wildcard_pattern
+      # Secrets and security resources
+      IAMRole: *wildcard_pattern
+      IAMUser: *wildcard_pattern
+      IAMGroup: *wildcard_pattern
+      IAMInstanceProfile: *wildcard_pattern
+      IAMPolicy: *wildcard_pattern
+      IAMRolePolicyAttachment: *wildcard_pattern
+      IAMUserPolicyAttachment: *wildcard_pattern
+      # CloudFormation resources
+      CloudFormationStack: *wildcard_pattern
+      # Control Tower resources
+      CloudTrailTrail: *controltower_pattern
+      ConfigServiceDeliveryChannel: *controltower_pattern
+      ConfigServiceConfigurationRecorder: *controltower_pattern
+      SNSTopic: *controltower_pattern
+      SNSSubscription: *controltower_pattern
+      CloudWatchEventsRule: *wildcard_pattern
+      CloudWatchEventsTarget: *wildcard_pattern
+      LambdaFunction: *controltower_pattern
+      CloudWatchLogsLogGroup: *controltower_pattern
+      # Add more resource filters as needed
